@@ -3,6 +3,7 @@ import { Form, Input, TextArea, Select } from "formsy-semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const options = [
   { key: "m", text: "Male", value: "male" },
@@ -82,6 +83,10 @@ class AddLeadForm extends Component {
     this.setState({ loading: true }, function() {
       setTimeout(() => {
         this.setState({ loading: false });
+        axios.post(`url`).then(res => {
+          console.log(res);
+          console.log(res.data);
+        });
         toast("Lead added successfully!");
       }, 500);
     });
