@@ -189,6 +189,20 @@ class AddLeadForm extends Component {
                   placeholder="Gender"
                   name="gender"
                 />
+                <Form.Field
+                  control={Input}
+                  label="DOSC"
+                  type="date"
+                  placeholder="Gender"
+                  name="gender"
+                />
+                <Form.Field
+                  control={Input}
+                  label="DOCC"
+                  type="date"
+                  placeholder="Gender"
+                  name="gender"
+                />
 
                 <Form.Field
                   control={Input}
@@ -246,6 +260,110 @@ class AddLeadForm extends Component {
                   label="Duration of Joint and Bone illness"
                   labelPosition="right corner"
                   width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Affected areas of Back and Neck"
+                  width={4}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={Select}
+                  name="food"
+                  label="Affected areas of skin"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Duration of Paralysis and stroke illness"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label=" 
+                  Lifestyle Diseases Complaints "
+                  labelPosition="right corner"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Affected Areas due to Stroke or Paralysis"
+                  width={4}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={Select}
+                  name="food"
+                  label="Duration of illness"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Neck is affected"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label=" Mid back area is affected"
+                  labelPosition="right corner"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Lower back area is affected"
+                  width={4}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={Select}
+                  name="food"
+                  label="Arms and legs are affected"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Full body is affected"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Knee is affected"
+                  labelPosition="right corner"
+                  width={4}
+                />
+                <Form.Field
+                  control={Input}
+                  name="exercise"
+                  label="Diabetes"
+                  width={4}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={Select}
+                  name="food"
+                  label="Obesity"
+                  width={4}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={TextArea}
+                  name="exercise"
+                  label="Their message to us"
+                  width={16}
                 />
               </Form.Group>
             </div>
