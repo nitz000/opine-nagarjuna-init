@@ -6,7 +6,7 @@ import {
   IoIosPaperPlane,
   IoIosAdd
 } from "react-icons/io";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Button } from "semantic-ui-react";
 import { FiEdit3 } from "react-icons/fi";
 class SingleLead extends Component {
   state = {
@@ -138,28 +138,22 @@ class SingleLead extends Component {
           <div className="col-md-9 singleright">
             <div className="row">
               <div className="col-md-12 inner-top-bar">
-                <div className="topbar-item">
-                  Lead Stage
-                  <Dropdown as="button" text="Followup call made">
-                    <Dropdown.Menu>
-                      <Dropdown.Item text="Prospect" />
-                      <Dropdown.Item text="Followup call made" />
-                      <Dropdown.Item text="Followup call rejected" />
-                      <Dropdown.Item text="Clinical call made" />
-                      <Dropdown.Item text="Clinical Rejection" />
-                      <Dropdown.Item icon="Clinical Conversion" />
-                    </Dropdown.Menu>
-                  </Dropdown>
+                <Button> Add activity</Button>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-8 activitysection">
+                <div className="row">
+                  <div className="col-md-12 activity"></div>
                 </div>
-                <div className="topbar-item">
-                  Lead Priority
-                  <Dropdown as="button" text="Hot">
-                    <Dropdown.Menu>
-                      <Dropdown.Item text="Hot" />
-                      <Dropdown.Item text="Warm" />
-                      <Dropdown.Item text="Cold" />
-                    </Dropdown.Menu>
-                  </Dropdown>
+              </div>
+              <div className="col-md-4 tasklist">
+                <h5>Lead Tasks</h5>
+                <div className="task">
+                  <div className="tasktime">12/05/2020 5:30 PM</div>
+                  <div className="task">
+                    Meeting with client at Ashton square, Kavanal arcade, Cochin
+                  </div>
                 </div>
               </div>
             </div>

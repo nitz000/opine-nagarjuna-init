@@ -6,65 +6,73 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const options = [
-  { key: "m", text: "Male", value: "male" },
-  { key: "f", text: "Female", value: "female" },
-  { key: "o", text: "Other", value: "other" }
+  { key: "m", text: "Male", value: "Male" },
+  { key: "f", text: "Female", value: "Female" },
+  { key: "o", text: "Other", value: "Other" }
 ];
 const leadowner_options = [
-  { key: "1", text: "Nithin Krishna", value: "ld1" },
-  { key: "2", text: "Fyroz Haneefa", value: "ld2" },
-  { key: "3", text: "Ashik Sajeevan", value: "ld3" }
+  { key: "1", text: "Nithin Krishna", value: "Nithin Krishna" },
+  { key: "2", text: "Fyroz Haneefa", value: "Fyroz Haneefa" },
+  { key: "3", text: "Ashik Sajeevan", value: "Ashik Sajeevan" }
 ];
 
 const lead_source_options = [
-  { key: "1", text: "Organic Search", value: "ls1" },
-  { key: "2", text: "Online Chat", value: "ls2" },
-  { key: "3", text: "Inbound Phone call", value: "ls3" },
-  { key: "4", text: "Inbound Email", value: "ls4" },
-  { key: "5", text: "Social Media", value: "ls5" },
-  { key: "6", text: "Patient Referral", value: "ls6" },
-  { key: "7", text: "Doctor Referral", value: "ls7" },
-  { key: "8", text: "Other", value: "ls8" }
+  { key: "1", text: "Organic Search", value: "Organic Search" },
+  { key: "2", text: "Online Chat", value: "Online Chat" },
+  { key: "3", text: "Inbound Phone call", value: "Inbound Phone call" },
+  { key: "4", text: "Inbound Email", value: "Inbound Email" },
+  { key: "5", text: "Social Media", value: "Social Media" },
+  { key: "6", text: "Patient Referral", value: "Patient Referral" },
+  { key: "7", text: "Doctor Referral", value: "Doctor Referral" },
+  { key: "8", text: "Other", value: "Other" }
 ];
 const lead_type_options = [
-  { key: "1", text: "Product Enquiry", value: "lt1" },
-  { key: "2", text: "Residential treatment enquiry", value: "lt2" }
+  { key: "1", text: "Product Enquiry", value: "Product Enquiry" },
+  {
+    key: "2",
+    text: "Residential Treatment Enquiry",
+    value: "Residential Treatment Enquiry"
+  }
 ];
 const occupancy_status_options = [
-  { key: "1", text: "DSO", value: "os1" },
-  { key: "2", text: "FSO", value: "os2" },
-  { key: "3", text: "FSQ", value: "os3" }
+  { key: "1", text: "DSO", value: "DSO" },
+  { key: "2", text: "FSO", value: "FSO" },
+  { key: "3", text: "FSQ", value: "FSQ" }
 ];
 const interest_options = [
-  { key: "1", text: "Panchakarma", value: "int1" },
-  { key: "2", text: "Spine", value: "int2" },
-  { key: "3", text: "Rehabilitation", value: "int3" },
-  { key: "4", text: "Digestive Disorder", value: "int4" },
-  { key: "5", text: "Gynaecological Disorders", value: "int5" }
+  { key: "1", text: "Panchakarma", value: "Panchakarma" },
+  { key: "2", text: "Spine", value: "Spine" },
+  { key: "3", text: "Rehabilitation", value: "Rehabilitation" },
+  { key: "4", text: "Digestive Disorder", value: "Digestive Disorder" },
+  {
+    key: "5",
+    text: "Gynaecological Disorders",
+    value: "Gynaecological Disorders"
+  }
 ];
 const intensity_options = [
-  { key: "1", text: "Mild", value: "inte1" },
-  { key: "2", text: "Medium", value: "inte2" },
-  { key: "3", text: "Acute", value: "inte3" }
+  { key: "1", text: "Mild", value: "Mild" },
+  { key: "2", text: "Medium", value: "Medium" },
+  { key: "3", text: "Acute", value: "Acute" }
 ];
 const stage_options = [
-  { key: "1", text: "Prospect", value: "st1" },
-  { key: "2", text: "Followup call made", value: "st2" },
-  { key: "3", text: "Followup call rejected", value: "st3" },
-  { key: "4", text: "Clinical call made", value: "st4" },
-  { key: "5", text: "Clinical rejection", value: "st5" },
-  { key: "6", text: "Clinical conversion", value: "st6" }
+  { key: "1", text: "Prospect", value: "Prospect" },
+  { key: "2", text: "Followup call made", value: "Followup call made" },
+  { key: "3", text: "Followup call rejected", value: "Followup call rejected" },
+  { key: "4", text: "Clinical call made", value: "Clinical call made" },
+  { key: "5", text: "Clinical rejection", value: "Clinical rejection" },
+  { key: "6", text: "Clinical conversion", value: "Clinical conversion" }
 ];
 const priority_options = [
-  { key: "1", text: "Hot Lead", value: "pr1" },
-  { key: "2", text: "Warm Lead", value: "pr2" },
-  { key: "3", text: "Cold Lead", value: "pr3" }
+  { key: "1", text: "Hot Lead", value: "Hot" },
+  { key: "2", text: "Warm Lead", value: "Warm" },
+  { key: "3", text: "Cold Lead", value: "Cold" }
 ];
 
 const followup_options = [
-  { key: "1", text: "Call", value: "fo1" },
-  { key: "2", text: "Email", value: "fo2" },
-  { key: "3", text: "Meeting", value: "fo3" }
+  { key: "1", text: "Call", value: "Call" },
+  { key: "2", text: "Email", value: "Email" },
+  { key: "3", text: "Meeting", value: "Meeting" }
 ];
 
 class AddLeadForm extends Component {
@@ -72,6 +80,19 @@ class AddLeadForm extends Component {
     leadsource: "",
     leadtype: "",
     leadinterest: "",
+    dateOfAddition: "",
+    occupancyStatus: "",
+    leadInterest: "",
+    clinicalIntensity: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    emailAddress: "",
+    phoneNumber: "",
+    additionalNotes: "",
+    leadPriority: "",
+    leadStatus: "",
+    leadOwner: "",
     loading: false
   };
 
@@ -83,15 +104,55 @@ class AddLeadForm extends Component {
     this.setState({ loading: true }, function() {
       setTimeout(() => {
         this.setState({ loading: false });
-        axios.post(`url`).then(res => {
-          console.log(res);
-          console.log(res.data);
-        });
+        const {
+          leadSource,
+          leadType,
+          dateOfAddition,
+          occupancyStatus,
+          leadInterest,
+          clinicalIntensity,
+          firstName,
+          lastName,
+          gender,
+          emailAddress,
+          phoneNumber,
+          additionalNotes
+        } = this.state;
+        axios
+          .post(
+            `http://localhost:8089/leads`,
+            {
+              leadSource,
+              leadType,
+              dateOfAddition,
+              occupancyStatus,
+              leadInterest,
+              clinicalIntensity,
+              firstName,
+              lastName,
+              gender,
+              emailAddress,
+              phoneNumber,
+              additionalNotes,
+              additionalLeadDetails: {
+                leadPriority: this.state.leadPriority,
+                leadStatus: this.state.leadStatus,
+                leadOwner: this.state.leadOwner
+              }
+            },
+            {
+              headers: { "Content-Type": "application/json", crossOrigin: true }
+            }
+          )
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
+
         toast("Lead added successfully!");
       }, 500);
     });
   };
-
   render() {
     const errorLabel = <div className="errorlabel"></div>;
     return (
@@ -189,20 +250,6 @@ class AddLeadForm extends Component {
                   placeholder="Gender"
                   name="gender"
                 />
-                <Form.Field
-                  control={Input}
-                  label="DOSC"
-                  type="date"
-                  placeholder="Gender"
-                  name="gender"
-                />
-                <Form.Field
-                  control={Input}
-                  label="DOCC"
-                  type="date"
-                  placeholder="Gender"
-                  name="gender"
-                />
 
                 <Form.Field
                   control={Input}
@@ -226,6 +273,28 @@ class AddLeadForm extends Component {
                   placeholder="Phone number"
                   name="phno"
                 />
+                <Form.Field
+                  control={Input}
+                  label="Country"
+                  name="country"
+                  placeholder="Country name"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  control={Input}
+                  label="DOSC"
+                  type="date"
+                  placeholder="Gender"
+                  name="dosc"
+                />
+                <Form.Field
+                  control={Input}
+                  label="DOCC"
+                  type="date"
+                  placeholder="Gender"
+                  name="docc"
+                />
               </Form.Group>
               <Form.Field
                 control={TextArea}
@@ -233,139 +302,6 @@ class AddLeadForm extends Component {
                 placeholder=""
                 name="notes"
               />
-              <h4>Clinical Information</h4>
-              <Form.Group>
-                <Form.Field
-                  control={Input}
-                  name="age"
-                  type="number"
-                  label="Age"
-                  width={2}
-                />
-                <Form.Field
-                  control={Select}
-                  name="food"
-                  label="Food eaten outside home?"
-                  width={4}
-                />
-                <Form.Field
-                  control={Select}
-                  name="exercise"
-                  label="Exercise pattern"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Duration of Joint and Bone illness"
-                  labelPosition="right corner"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Affected areas of Back and Neck"
-                  width={4}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Field
-                  control={Select}
-                  name="food"
-                  label="Affected areas of skin"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Duration of Paralysis and stroke illness"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label=" 
-                  Lifestyle Diseases Complaints "
-                  labelPosition="right corner"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Affected Areas due to Stroke or Paralysis"
-                  width={4}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Field
-                  control={Select}
-                  name="food"
-                  label="Duration of illness"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Neck is affected"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label=" Mid back area is affected"
-                  labelPosition="right corner"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Lower back area is affected"
-                  width={4}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Field
-                  control={Select}
-                  name="food"
-                  label="Arms and legs are affected"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Full body is affected"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Knee is affected"
-                  labelPosition="right corner"
-                  width={4}
-                />
-                <Form.Field
-                  control={Input}
-                  name="exercise"
-                  label="Diabetes"
-                  width={4}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Field
-                  control={Select}
-                  name="food"
-                  label="Obesity"
-                  width={4}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Field
-                  control={TextArea}
-                  name="exercise"
-                  label="Their message to us"
-                  width={16}
-                />
-              </Form.Group>
             </div>
 
             <div className="col-md-2 inner-right-side">

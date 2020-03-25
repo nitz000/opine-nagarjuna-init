@@ -162,7 +162,6 @@ form {
   height: 100vh;
   left: 0;
   color: #2b2e37;
-  box-shadow: 0px 0px 31px -2px rgba(0, 0, 0, 0.09);
   z-index: 2;
 }
 .singleright {
@@ -283,9 +282,8 @@ form {
 .inner-top-bar {
   text-align: right;
   background: white;
-  box-shadow: 0px 0px 31px -2px rgba(0, 0, 0, 0.09);
   z-index: 2;
-  padding: 5px 9px;
+  padding: 14px 20px;
   .topbar-item {
     display: inline-block;
     margin-left: 1em;
@@ -461,4 +459,8 @@ table {
   bottom: 0;
   left: 0px;
   padding: 1em;
+}
+.tasklist {
+  min-height: 100vh;
+  background: #fff;
 }
