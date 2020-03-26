@@ -11,7 +11,7 @@ import Reports from "./Components/Pages/Reports";
 import LeadReport from "./Components/Reports/LeadReport";
 import Settings from "./Components/Pages/Setings.jsx";
 import ExecutiveAddition from "./Components/Settings/ExecutiveAddition.jsx";
-
+import Login from "./Components/Externals/Login.jsx";
 function App() {
   return (
     <div className="container-fluid">
@@ -47,6 +47,9 @@ function App() {
             </Route>
             <Route path="/executiveaddition">
               <ExecutiveAddition />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>
