@@ -327,26 +327,6 @@ class AddLeadForm extends Component {
                 placeholder="Lead Owner"
                 name="lead-owner"
               />
-              <h4>Schedule next follow-up</h4>
-              <Form.Field
-                control={Select}
-                label="Followup medium"
-                options={followup_options}
-                placeholder="Followup medium"
-                name="foll-med"
-              />
-              <Form.Field
-                control={Input}
-                label="Followup Date"
-                type="date"
-                name="foll-dt"
-              />
-              <Form.Field
-                control={Input}
-                label="Followup Time"
-                type="time"
-                name="foll-time"
-              />
             </div>
             <div className="page-action-bar">
               <Input type="submit" name="sbtm">
