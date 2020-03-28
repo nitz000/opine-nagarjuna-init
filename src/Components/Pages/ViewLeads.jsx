@@ -13,6 +13,7 @@ import CellRenderer from "../Renderers/CellRenderer";
 import CountryRenderer from "../Renderers/CountryRenderer";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import axios from "axios";
 
 const created_options = [
   { key: "1", text: "Past day", value: "co1" },
@@ -115,39 +116,33 @@ class ViewLeads extends Component {
       filter: true,
       resizable: true
     },
-    rowData: [
-      {
-        name: "Nithin Krishna S",
-        lt: "Treatment enquiry",
-        ls: "Inbound Phone call",
-        cn: "Brazil",
-        le: 80,
-        li: "Rehabilitation enquiry",
-        lm:
-          "Lorem ipsum dolor sit amet consectetur adispsicng elit set duo eoius mod tempr ."
-      },
-      {
-        name: "Afsal Hussain",
-        lt: "Treatment enquiry",
-        ls: "Inbound Phone call",
-        cn: "Ireland",
-        le: 40,
-        li: "Rehabilitation enquiry",
-        lm:
-          "Lorem ipsum dolor sit amet consectetur adispsicng elit set duo eoius mod tempr ."
-      },
-      {
-        name: "fyroz Haneefa",
-        lt: "Habilitation enquiry",
-        ls: "Inbound Phone call",
-        cn: "Peru",
-        le: 10,
-        li: "Rehabilitation enquiry",
-        lm:
-          "Lorem ipsum dolor sit amet consectetur adispsicng elit set duo eoius mod tempr ."
-      }
-    ]
+    rowData: []
   };
+
+  getData = () => {
+    try {
+      return axios.get("url");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  mountData = async () => {
+    const data = getData()
+      .then(response => {
+        if (response.data.message) {
+          console.log(`Got ${Object.entries(response.data.message).length}`);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  componentDidMount() {
+    this.mountData();
+  }
+
   render() {
     return (
       <div className="row">
