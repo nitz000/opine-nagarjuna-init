@@ -23,6 +23,12 @@ const panes = [
               <div className="col-md-12 act-det">
                 <em>Nithin Krishna</em> added a followup for this lead
               </div>
+              <div className="col-md-12 act-time">
+                12:30 PM , 11 September 2019
+              </div>
+              <div className="col-md-12 act-det">
+                <em>Nithin Krishna</em> created this lead
+              </div>
             </div>
           </div>
         </div>
