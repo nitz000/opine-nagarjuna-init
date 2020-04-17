@@ -1,39 +1,38 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Header,
   Modal,
   Form,
   Select,
-  Dropdown
+  Dropdown,
 } from "semantic-ui-react";
 import { AgGridReact } from "ag-grid-react";
 import { AllModules } from "ag-grid-enterprise";
-import CellRenderer from "../Renderers/CellRenderer";
-import CountryRenderer from "../Renderers/CountryRenderer";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import axios from "axios";
+import ViewLeadBtn from "../Renderers/ViewLeadBtn.jsx";
 
 const created_options = [
-  { key: "1", text: "Past day", value: "co1" },
-  { key: "2", text: "Last 7 days", value: "co2" },
-  { key: "3", text: "Last month", value: "co3" },
-  { key: "4", text: "This year", value: "co4" },
-  { key: "5", text: "All Time", value: "co5" }
+  { key: "1", text: "Past day", value: "Past day" },
+  { key: "2", text: "Last 7 days", value: "Last 7 days" },
+  { key: "3", text: "Last month", value: "Last month" },
+  { key: "4", text: "This year", value: "This year" },
+  { key: "5", text: "All Time", value: "All Time" },
 ];
 const prio_options = [
-  { key: "1", text: "Hot", value: "prio1" },
-  { key: "2", text: "Warm", value: "prio2" },
-  { key: "3", text: "Cold", value: "prio3" }
+  { key: "1", text: "Hot", value: "Hot" },
+  { key: "2", text: "Warm", value: "Warm" },
+  { key: "3", text: "Cold", value: "Cold" },
 ];
 const stage_options = [
-  { key: "1", text: "Prospect", value: "st1" },
-  { key: "2", text: "Followup call made", value: "st2" },
-  { key: "3", text: "Followup call rejected", value: "st3" },
-  { key: "4", text: "Clinical call made", value: "st4" },
-  { key: "5", text: "Clinical rejection", value: "st5" },
-  { key: "6", text: "Clinical conversion", value: "st6" }
+  { key: "1", text: "Prospect", value: "Prospect" },
+  { key: "2", text: "Followup call made", value: "Followup call made" },
+  { key: "3", text: "Followup call rejected", value: "Followup call rejected" },
+  { key: "4", text: "Clinical call made", value: "Clinical call made" },
+  { key: "5", text: "Clinical rejection", value: "Clinical rejection" },
+  { key: "6", text: "Clinical conversion", value: "Clinical conversion" },
 ];
 
 class ViewLeads extends Component {
@@ -42,105 +41,115 @@ class ViewLeads extends Component {
     columnDefs: [
       {
         headerName: "Customer Name",
-        field: "name",
+        valueGetter: function (params) {
+          const fncap =
+            params.data.firstName.charAt(0).toUpperCase() +
+            params.data.firstName.slice(1);
+          return fncap;
+        },
         width: 215,
         filter: "agTextColumnFilter",
-        checkboxSelection: true,
-        pinned: true
+        checkboxSelection: false,
+        pinned: true,
+      },
+      {
+        headerName: "View lead",
+        cellRendererFramework: function (params) {
+          const cellid = params.data.id;
+          const celllink = "singlelead/" + cellid;
+          return <Link to={celllink}>GO</Link>;
+        },
+        width: 50,
+        pinned: true,
       },
       {
         headerName: "Lead Type",
         field: "lt",
         width: 150,
-        filter: "agTextColumnFilter"
+        filter: "agTextColumnFilter",
       },
       {
         headerName: "Lead Source",
         field: "ls",
         width: 180,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
+        filterParams: { defaultOption: "startsWith" },
       },
       {
         headerName: "Country ",
         field: "cn",
         width: 180,
-        cellRendererFramework: CountryRenderer
+        // cellRendererFramework: CountryRenderer,
       },
       {
         headerName: "Lead Engagement Index ",
         field: "le",
         width: 180,
-        cellRendererFramework: CellRenderer
+        //cellRendererFramework: CellRenderer,
       },
       {
         headerName: "Lead Interest",
         field: "li",
         width: 200,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
+        filterParams: { defaultOption: "startsWith" },
       },
       {
         headerName: "Message",
         field: "lm",
         width: 400,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
+        filterParams: { defaultOption: "startsWith" },
       },
       {
         headerName: "Email address",
         field: "email",
         width: 200,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
+        filterParams: { defaultOption: "startsWith" },
       },
       {
         headerName: "Phone number",
         field: "phone",
         width: 200,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
+        filterParams: { defaultOption: "startsWith" },
       },
       {
         headerName: "Email address",
         field: "email",
         width: 200,
         filter: "agTextColumnFilter",
-        filterParams: { defaultOption: "startsWith" }
-      }
+        filterParams: { defaultOption: "startsWith" },
+      },
     ],
     defaultColDef: {
       selectable: true,
       enablePivot: true,
       sortable: true,
       filter: true,
-      resizable: true
+      resizable: true,
+      checkboxSelection: false,
     },
-    rowData: []
-  };
-
-  getData = () => {
-    try {
-      return axios.get("url");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  mountData = async () => {
-    const data = getData()
-      .then(response => {
-        if (response.data.message) {
-          console.log(`Got ${Object.entries(response.data.message).length}`);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    rowData: [],
   };
 
   componentDidMount() {
-    this.mountData();
+    var username = "nishass";
+    var password = "nishanisha";
+    var basicAuth = "Basic " + btoa(username + ":" + password);
+    var authkey = localStorage.getItem("appkey");
+    console.log(authkey);
+    const AuthStr = "Bearer ".concat(authkey);
+    fetch("http://207.180.228.92:8089/rest/leads", {
+      headers: {
+        "Content-Type": "application/json",
+        crossOrigin: false,
+        Authorization: AuthStr,
+      },
+    })
+      .then((result) => result.json())
+      .then((rowData) => this.setState({ rowData }));
   }
 
   render() {
@@ -189,7 +198,6 @@ class ViewLeads extends Component {
                     <Dropdown item text="Lead Actions" className="ddbtn">
                       <Dropdown.Menu>
                         <Dropdown.Item>View Lead</Dropdown.Item>
-                        <Dropdown.Item>Add Activity</Dropdown.Item>
                         <Dropdown.Item>Send Email</Dropdown.Item>
                         <Dropdown.Item>Send SMS</Dropdown.Item>
                         <Dropdown.Item>Delete Lead</Dropdown.Item>
@@ -214,6 +222,7 @@ class ViewLeads extends Component {
                       defaultColDef={this.state.defaultColDef}
                       floatingFilter={true}
                       onGridReady={this.onGridReady}
+                      rowMultiSelectWithClick={true}
                     ></AgGridReact>
                   </div>
                 </div>

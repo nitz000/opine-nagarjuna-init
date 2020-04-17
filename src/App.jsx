@@ -22,6 +22,9 @@ function App() {
         <div className="col-md-12 main-content">
           <Switch>
             <Route path="/" exact>
+              <Login />
+            </Route>
+            <Route path="/" exact>
               <Dashboard />
             </Route>
             <Route path="/leads">
@@ -30,9 +33,7 @@ function App() {
             <Route path="/viewleads">
               <ViewLeads />
             </Route>
-            <Route path="/singlelead">
-              <SingleLead />
-            </Route>
+            <Route path="/singlelead/:id" component={SingleLead}></Route>
             <Route path="/calendar">
               <CalendarMain />
             </Route>

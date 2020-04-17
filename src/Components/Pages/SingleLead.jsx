@@ -4,19 +4,68 @@ import {
   IoIosCall,
   IoMdBookmarks,
   IoIosPaperPlane,
-  IoIosAdd
+  IoIosAdd,
 } from "react-icons/io";
-import { Dropdown, Button } from "semantic-ui-react";
+import { Dropdown, Button, Tab } from "semantic-ui-react";
 import { FiEdit3 } from "react-icons/fi";
+
+const panes = [
+  {
+    menuItem: "Lead Activity",
+    render: () => (
+      <Tab.Pane attached={false}>
+        <div className="row">
+          <div className="col-md-12 singleactivity">
+            <div className="row">
+              <div className="col-md-12 act-time">
+                12:30 PM , 12 September 2019
+              </div>
+              <div className="col-md-12 act-det">
+                <em>Nithin Krishna</em> added a followup for this lead
+              </div>
+            </div>
+          </div>
+        </div>
+      </Tab.Pane>
+    ),
+  },
+  {
+    menuItem: "Lead Tasks",
+    render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
+  },
+  {
+    menuItem: "Email History",
+    render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
+  },
+];
+
 class SingleLead extends Component {
   state = {
+    id: "",
     leadName: "Nithin Krishna",
     leadTown: "Trivandrum",
     leadCountry: "India",
     leadEmail: "nithinkrishna.mec@gmail.com",
     leadPhonenumber: "+91 9207569837",
-    leadIndex: 82
+    leadIndex: 82,
   };
+  componentDidMount() {
+    const userid = this.props.match.params.id;
+    var authkey = localStorage.getItem("appkey");
+    console.log(authkey);
+    var leadurl = "http://207.180.228.92:8089/rest/leads/" + userid;
+    const AuthStr = "Bearer ".concat(authkey);
+    fetch(leadurl, {
+      headers: {
+        "Content-Type": "application/json",
+        crossOrigin: false,
+        Authorization: AuthStr,
+      },
+    })
+      .then(console.log((result) => result.json()))
+      .then((rowData) => this.setState({ rowData }));
+  }
+
   render() {
     const name = this.state.leadName;
     let initials = name.match(/\b\w/g) || [];
@@ -135,27 +184,12 @@ class SingleLead extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-9 singleright">
-            <div className="row">
-              <div className="col-md-12 inner-top-bar">
-                <Button> Add activity</Button>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-8 activitysection">
-                <div className="row">
-                  <div className="col-md-12 activity"></div>
-                </div>
-              </div>
-              <div className="col-md-4 tasklist">
-                <h5>Lead Tasks</h5>
-                <div className="task">
-                  <div className="tasktime">12/05/2020 5:30 PM</div>
-                  <div className="task">
-                    Meeting with client at Ashton square, Kavanal arcade, Cochin
-                  </div>
-                </div>
-              </div>
+          <div className="row lead-right">
+            <div className="col-md-9 col-md-offset-3">
+              <Tab
+                menu={{ borderless: true, attached: false, tabular: false }}
+                panes={panes}
+              />
             </div>
           </div>
         </div>

@@ -8,71 +8,71 @@ import axios from "axios";
 const options = [
   { key: "m", text: "Male", value: "Male" },
   { key: "f", text: "Female", value: "Female" },
-  { key: "o", text: "Other", value: "Other" }
+  { key: "o", text: "Transgender", value: "Transgender" },
 ];
 const leadowner_options = [
-  { key: "1", text: "Nithin Krishna", value: "Nithin Krishna" },
-  { key: "2", text: "Fyroz Haneefa", value: "Fyroz Haneefa" },
-  { key: "3", text: "Ashik Sajeevan", value: "Ashik Sajeevan" }
+  { key: "1", text: "Nithin Krishna", value: "LeadOwner1" },
+  { key: "2", text: "Fyroz Haneefa", value: "Fyroz_Haneefa" },
+  { key: "3", text: "Ashik Sajeevan", value: "Ashik_Sajeevan" },
 ];
 
 const lead_source_options = [
-  { key: "1", text: "Organic Search", value: "Organic Search" },
-  { key: "2", text: "Online Chat", value: "Online Chat" },
-  { key: "3", text: "Inbound Phone call", value: "Inbound Phone call" },
-  { key: "4", text: "Inbound Email", value: "Inbound Email" },
-  { key: "5", text: "Social Media", value: "Social Media" },
-  { key: "6", text: "Patient Referral", value: "Patient Referral" },
-  { key: "7", text: "Doctor Referral", value: "Doctor Referral" },
-  { key: "8", text: "Other", value: "Other" }
+  { key: "1", text: "Organic Search", value: "LeadSource1" },
+  { key: "2", text: "Online Chat", value: "LeadSource2" },
+  { key: "3", text: "Inbound Phone call", value: "Inbound_Phone_call" },
+  { key: "4", text: "Inbound Email", value: "Inbound_Email" },
+  { key: "5", text: "Social Media", value: "Social_Media" },
+  { key: "6", text: "Patient Referral", value: "Patient_Referral" },
+  { key: "7", text: "Doctor Referral", value: "Doctor_Referral" },
+  { key: "8", text: "Other", value: "Other" },
 ];
 const lead_type_options = [
-  { key: "1", text: "Product Enquiry", value: "Product Enquiry" },
+  { key: "1", text: "Product Enquiry", value: "LeadType1" },
   {
     key: "2",
     text: "Residential Treatment Enquiry",
-    value: "Residential Treatment Enquiry"
-  }
+    value: "Residential_Treatment_Enquiry",
+  },
 ];
 const occupancy_status_options = [
   { key: "1", text: "DSO", value: "DSO" },
   { key: "2", text: "FSO", value: "FSO" },
-  { key: "3", text: "FSQ", value: "FSQ" }
+  { key: "3", text: "FSQ", value: "FSQ" },
 ];
 const interest_options = [
   { key: "1", text: "Panchakarma", value: "Panchakarma" },
   { key: "2", text: "Spine", value: "Spine" },
   { key: "3", text: "Rehabilitation", value: "Rehabilitation" },
-  { key: "4", text: "Digestive Disorder", value: "Digestive Disorder" },
+  { key: "4", text: "Digestive Disorder", value: "Digestive_Disorder" },
   {
     key: "5",
     text: "Gynaecological Disorders",
-    value: "Gynaecological Disorders"
-  }
+    value: "Gynaecological_Disorders",
+  },
 ];
 const intensity_options = [
   { key: "1", text: "Mild", value: "Mild" },
   { key: "2", text: "Medium", value: "Medium" },
-  { key: "3", text: "Acute", value: "Acute" }
+  { key: "3", text: "Acute", value: "Acute" },
 ];
 const stage_options = [
   { key: "1", text: "Prospect", value: "Prospect" },
-  { key: "2", text: "Followup call made", value: "Followup call made" },
-  { key: "3", text: "Followup call rejected", value: "Followup call rejected" },
-  { key: "4", text: "Clinical call made", value: "Clinical call made" },
-  { key: "5", text: "Clinical rejection", value: "Clinical rejection" },
-  { key: "6", text: "Clinical conversion", value: "Clinical conversion" }
+  { key: "2", text: "Followup call made", value: "Followup_call_made" },
+  { key: "3", text: "Followup call rejected", value: "Followup_call_rejected" },
+  { key: "4", text: "Clinical call made", value: "Clinical_call_made" },
+  { key: "5", text: "Clinical rejection", value: "Clinical_rejection" },
+  { key: "6", text: "Clinical conversion", value: "Clinical_conversion" },
 ];
 const priority_options = [
   { key: "1", text: "Hot Lead", value: "Hot" },
   { key: "2", text: "Warm Lead", value: "Warm" },
-  { key: "3", text: "Cold Lead", value: "Cold" }
+  { key: "3", text: "Cold Lead", value: "Cold" },
 ];
 
 const followup_options = [
   { key: "1", text: "Call", value: "Call" },
   { key: "2", text: "Email", value: "Email" },
-  { key: "3", text: "Meeting", value: "Meeting" }
+  { key: "3", text: "Meeting", value: "Meeting" },
 ];
 
 class AddLeadForm extends Component {
@@ -93,15 +93,18 @@ class AddLeadForm extends Component {
     leadPriority: "",
     leadStatus: "",
     leadOwner: "",
-    loading: false
+    country: "",
+    dosc: "",
+    docc: "",
+    loading: false,
   };
 
   handleChange = (e, data) => {
     this.setState({ [data.name]: data.value });
   };
 
-  submitHandler = e => {
-    this.setState({ loading: true }, function() {
+  submitHandler = (e) => {
+    this.setState({ loading: true }, function () {
       setTimeout(() => {
         this.setState({ loading: false });
         const {
@@ -116,11 +119,20 @@ class AddLeadForm extends Component {
           gender,
           emailAddress,
           phoneNumber,
-          additionalNotes
+          additionalNotes,
+          country,
+          dosc,
+          docc,
         } = this.state;
+        var username = "nishass";
+        var password = "nishanisha";
+        var basicAuth = "Basic " + btoa(username + ":" + password);
+        var authkey = localStorage.getItem("appkey");
+        const AuthStr = "Bearer ".concat(authkey);
+        //const AuthStr = 'Bearer '.concat(username,password);
         axios
           .post(
-            `http://localhost:8089/leads`,
+            `http://207.180.228.92:8089/rest/leads`,
             {
               leadSource,
               leadType,
@@ -134,17 +146,26 @@ class AddLeadForm extends Component {
               emailAddress,
               phoneNumber,
               additionalNotes,
+              country,
+              dosc,
+              docc,
               additionalLeadDetails: {
                 leadPriority: this.state.leadPriority,
                 leadStatus: this.state.leadStatus,
-                leadOwner: this.state.leadOwner
-              }
+                leadOwner: this.state.leadOwner,
+              },
             },
+            //{headers: {  "Authorization": + basicAuth}}
             {
-              headers: { "Content-Type": "application/json", crossOrigin: true }
+              headers: {
+                "Content-Type": "application/json",
+                crossOrigin: true,
+                Authorization: AuthStr,
+              },
             }
           )
-          .then(res => {
+          .then((res) => {
+            console.log(authkey);
             console.log(res);
             console.log(res.data);
           });
@@ -173,7 +194,7 @@ class AddLeadForm extends Component {
                   options={lead_source_options}
                   required
                   width={3}
-                  name="leadsource"
+                  name="leadSource"
                   placeholder="Lead Source"
                   onChange={this.handleChange}
                 />
@@ -184,7 +205,7 @@ class AddLeadForm extends Component {
                   required
                   width={4}
                   placeholder="Lead Type"
-                  name="leadtype"
+                  name="leadType"
                   onChange={this.handleChange}
                 />
                 <Form.Field
@@ -195,7 +216,8 @@ class AddLeadForm extends Component {
                   width={2}
                   icon="calendar outline"
                   iconPosition="left"
-                  name="doa"
+                  name="dateOfAddition"
+                  onChange={this.handleChange}
                 />
                 <Form.Field
                   control={Select}
@@ -203,7 +225,8 @@ class AddLeadForm extends Component {
                   options={occupancy_status_options}
                   placeholder="Occupancy"
                   width={3}
-                  name="occ-st"
+                  name="occupancyStatus"
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Group>
@@ -214,7 +237,7 @@ class AddLeadForm extends Component {
                   placeholder="Lead Interested in"
                   required
                   width={4}
-                  name="leadinterest"
+                  name="leadInterest"
                   onChange={this.handleChange}
                   error={this.state.leadinteresterror}
                 />
@@ -224,7 +247,8 @@ class AddLeadForm extends Component {
                   options={intensity_options}
                   placeholder="Clinical Intensity"
                   width={4}
-                  name="cli-int"
+                  name="clinicalIntensity"
+                  onChange={this.handleChange}
                 />
 
                 <Form.Field
@@ -232,14 +256,16 @@ class AddLeadForm extends Component {
                   label="First name"
                   placeholder="First name"
                   width={4}
-                  name="first-name"
+                  name="firstName"
+                  onChange={this.handleChange}
                 />
                 <Form.Field
                   control={Input}
                   label="Last name"
                   placeholder="Last name"
                   width={4}
-                  name="last-name"
+                  name="lastName"
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Group>
@@ -249,6 +275,7 @@ class AddLeadForm extends Component {
                   options={options}
                   placeholder="Gender"
                   name="gender"
+                  onChange={this.handleChange}
                 />
 
                 <Form.Field
@@ -259,10 +286,11 @@ class AddLeadForm extends Component {
                   iconPosition="left"
                   placeholder="Email address"
                   width={4}
-                  name="email"
+                  name="emailAddress"
                   validations="isEmail"
                   validationErrors={{ isEmail: "Email not valid" }}
                   errorLabel={errorLabel}
+                  onChange={this.handleChange}
                 />
 
                 <Form.Field
@@ -271,13 +299,15 @@ class AddLeadForm extends Component {
                   icon="phone"
                   iconPosition="left"
                   placeholder="Phone number"
-                  name="phno"
+                  name="phoneNumber"
+                  onChange={this.handleChange}
                 />
                 <Form.Field
                   control={Input}
                   label="Country"
                   name="country"
                   placeholder="Country name"
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Group>
@@ -287,6 +317,7 @@ class AddLeadForm extends Component {
                   type="date"
                   placeholder="Gender"
                   name="dosc"
+                  onChange={this.handleChange}
                 />
                 <Form.Field
                   control={Input}
@@ -294,13 +325,15 @@ class AddLeadForm extends Component {
                   type="date"
                   placeholder="Gender"
                   name="docc"
+                  onChange={this.handleChange}
                 />
               </Form.Group>
               <Form.Field
                 control={TextArea}
                 label="Additional Notes"
                 placeholder=""
-                name="notes"
+                name="additionalNotes"
+                onChange={this.handleChange}
               />
             </div>
 
@@ -311,21 +344,24 @@ class AddLeadForm extends Component {
                 label="Lead Priority"
                 options={priority_options}
                 placeholder="Lead Priority"
-                name="lead-prio"
+                name="leadPriority"
+                onChange={this.handleChange}
               />
               <Form.Field
                 control={Select}
                 label="Lead Status"
                 options={stage_options}
                 placeholder="Lead Stage"
-                name="lead-stage"
+                name="leadStatus"
+                onChange={this.handleChange}
               />
               <Form.Field
                 control={Select}
                 label="Lead Owner"
                 options={leadowner_options}
                 placeholder="Lead Owner"
-                name="lead-owner"
+                name="leadOwner"
+                onChange={this.handleChange}
               />
             </div>
             <div className="page-action-bar">

@@ -41,6 +41,17 @@ body {
   border-bottom: 1px solid #bfbfbf;
   padding-bottom: 1.2em;
 }
+.loginLeft {
+  background-image: url("https://images.pexels.com/photos/340152/pexels-photo-340152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  height: 92vh;
+  margin-left: -3em;
+  background-position: top;
+  background-size: cover;
+}
+.loginRight {
+  height: 72vh;
+  padding: 10em 16%;
+}
 .page-bar {
   padding-top: 1.2em;
 
@@ -66,7 +77,6 @@ body {
   padding: 0em 3em 3em 3em;
 }
 .page-content {
-  margin-top: 2em;
   .addform-left {
     padding: 2em 2em 2em 1em;
   }
@@ -463,4 +473,10 @@ table {
 .tasklist {
   min-height: 100vh;
   background: #fff;
+}
+.lead-right {
+  background: #d7edf0;
+  min-height: 100vh;
+  margin-right: -27px;
+  padding-top: 2em;
 }
