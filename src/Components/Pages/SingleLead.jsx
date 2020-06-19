@@ -47,13 +47,7 @@ const panes = [
 
 class SingleLead extends Component {
   state = {
-    id: "",
-    leadName: "Nithin Krishna",
-    leadTown: "Trivandrum",
-    leadCountry: "India",
-    leadEmail: "nithinkrishna.mec@gmail.com",
-    leadPhonenumber: "+91 9207569837",
-    leadIndex: 82,
+    data: [],
   };
   componentDidMount() {
     const userid = this.props.match.params.id;
@@ -68,12 +62,19 @@ class SingleLead extends Component {
         Authorization: AuthStr,
       },
     })
-      .then(console.log((result) => result.json()))
-      .then((rowData) => this.setState({ rowData }));
+      .then((response) => response.json())
+      .then((responseJson) => console.log(responseJson))
+      // ...then we update the users state
+      .then((data) =>
+        this.setState({
+          data: data,
+        })
+      )
+      .then(console.log(this.state.data.dosc));
   }
 
   render() {
-    const name = this.state.leadName;
+    const name = "Nithin KRishna";
     let initials = name.match(/\b\w/g) || [];
     initials = (
       (initials.shift() || "") + (initials.pop() || "")
@@ -84,12 +85,9 @@ class SingleLead extends Component {
           <div className="col-md-3 singleinner">
             <div className="row bb2">
               <div className="col-md-12 leadnameinfo">
-                <div className="name-icon">{initials}</div>
+                <div className="name-icon">NK</div>
                 <div className="sidebar-name">
-                  <h3>{name}</h3>
-                  {this.state.leadEmail} <br />
-                  {this.state.leadPhonenumber} <br />
-                  {this.state.leadTown}, {this.state.leadCountry}
+                  <h3>Nithin</h3>
                 </div>
               </div>
               <div className="col-md-12">
